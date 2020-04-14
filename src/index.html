@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>Election</title>
+
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-12 col-sm-8 col-sm-push-2">
+          <h1 class="text-center">Election</h1>
+          <hr/>
+          <br/>
+        </div>
+      </div>
+    </div>
+
+    <div id="loader" class="text-center">
+      <p class="text-center">Loading...</p>
+    </div>
+
+    <div id="content" class="col-xs-12 col-sm-8 col-sm-push-4">
+
+      <div id="candidatePannel">
+        <p id="candidateCount">candidate standing for election = </p>
+      
+        <form onsubmit="App.getTheCandidateDetail()">
+          <input type="text" id="candidateGetName" placeholder="name">
+          <input type="text" id="candidateGetAddress" placeholder="address">
+          <button class="submit">submit</button>
+        </form>
+        <br>
+      </div>
+      
+      <div id="voterPannel">
+        <p id="voterCounts">Total no of voters = </p>
+
+        <form onsubmit="App.getTheVoterDetail()">
+          <input type="text" id="voterGetName" placeholder="name">
+          <input type="text" id="voterGetAddress" placeholder="address">
+          <br>
+          <input type="text" id="voterAllow" placeholder="true or false">
+          <button class="submit">submit</button>
+        </form>
+        <br>
+      </div>
+
+      <div id="votingPannel-1">
+        <button id="startVoting" onclick="App.changeTheVotingState()">Start voting</button>
+        <button id="stopVoting" onclick="App.changeTheVotingState()">Stop voting</button>
+        <button id="electionResult" onclick="App.getElectionResult()">Result</button>
+        <p id="electionREsultDisp"></p>
+      </div>
+
+      <div id="votingPannel">
+        <ul id="candidateList"></ul>
+        <input type="text" id="selectedCandidate" placeholder="address">
+        <button id="selectedCandidate" onclick="App.voteCandidate()">vote</button>
+      </div>
+
+    </div>
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/web3.min.js"></script>
+    <script src="js/truffle-contract.js"></script>
+    <script src="js/app.js"></script>
+  </body>
+</html>
