@@ -58,6 +58,10 @@
         <br>
       </div>
 
+      <div id="listOfCandidate">
+        <ul id = 'candidateListDisplay'></ul>
+      </div>
+
       <div id="votingPannel-1">
         <button id="startVoting" onclick="App.changeTheVotingState()">Start voting</button>
         <button id="stopVoting" onclick="App.changeTheVotingState()">Stop voting</button>
@@ -67,7 +71,7 @@
 
       <div id="votingPannel">
         <ul id="candidateList"></ul>
-        <input type="text" id="selectedCandidate" placeholder="address">
+        <input type="text" id="selectedCandidate" placeholder="no">
         <button id="selectedCandidate" onclick="App.voteCandidate()">vote</button>
       </div>
 

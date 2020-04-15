@@ -72,7 +72,7 @@ App = {
     // Render Tasks
     await App.renderTasks()
     await App.loadElectionPannel()
-
+    await App.updateCandidateList()
     // Update loading state
     App.setLoading(false)
   },
@@ -137,6 +137,7 @@ App = {
 
     const voterCount = await App.election.voter_count()
     $('#voterCounts').append(voterCount.toNumber())
+    
   },
 
   getTheCandidateDetail : async () =>{
@@ -164,11 +165,29 @@ App = {
 
   voteCandidate : async () => {
     var selectedCandidate = $("#selectedCandidate").val()
-    await App.election.Voting(selectedCandidate)
+    var candidateAddress = await App.election.candidate_list(selectedCandidate)
+    await App.election.Voting(candidateAddress)
   },
 
   getElectionResult : async () =>{
     await App.election.Result()
+  },
+
+  updateCandidateList : async () =>{
+    const candidateCount = await App.election.candidate_count()
+
+    for(var i = 1;i <=candidateCount.toNumber();i++ ){
+
+      var candidateAddress = await App.election.candidate_list(i)
+      var candidateName = await App.election.standing_candidates(candidateAddress)
+
+      $("#candidateListDisplay").append(i)
+      $("#candidateListDisplay").append(' => ')
+      $("#candidateListDisplay").append(candidateName)
+      $("#candidateListDisplay").append('  >  ')
+      $("#candidateListDisplay").append(candidateAddress)
+      $("#candidateListDisplay").append('<br>')
+    }
   },
 
   setLoading: (boolean) => {

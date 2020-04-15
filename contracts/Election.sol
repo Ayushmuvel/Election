@@ -29,7 +29,7 @@ contract Election {
 
       // making list of candidate nad voter
       mapping(uint => address)public candidate_list;
-      mapping(address => candidates) standing_candidates;
+      mapping(address => candidates) public standing_candidates;
       mapping(uint => address)public voter_list;
       mapping(address => Persons) Voters;
       // adding voters in the list
@@ -86,6 +86,7 @@ contract Election {
           if (voting == true && _status == false){
               voting = false;
               voting_count = 0;
+              Result();
           }
       }
       // pest the address of the selected address and vote count of that candidate is increased by one
