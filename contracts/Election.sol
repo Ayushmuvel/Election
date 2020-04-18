@@ -31,7 +31,7 @@ contract Election {
       mapping(uint => address)public candidate_list;
       mapping(address => candidates) public standing_candidates;
       mapping(uint => address)public voter_list;
-      mapping(address => Persons) Voters;
+      mapping(address => Persons) public Voters;
       // adding voters in the list
       function Add_voter (address _voter ,string memory _name,bool _elegiable) public{
           bool new_voter = true;
