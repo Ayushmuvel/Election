@@ -91,7 +91,10 @@ App = {
       var dis = false
       var voterAddress = await App.election.voter_list(i)
       if(web3.eth.accounts[0] == voterAddress ){
-        dis =true
+        dis = true
+        var Voters = await App.election.Voters(voterAddress)
+        Voters = Voters[1].toNumber()
+        break
       }
     }
 
@@ -111,7 +114,7 @@ App = {
       $("#votingPannel-1").hide()
     }
 
-    if(voting_count.toNumber() == 1 && voting == true && dis == true){
+    if(voting_count.toNumber() == 1 && voting == true && dis == true && Voters == 0){
       votingPannel.show()
     }else{
       votingPannel.hide()
@@ -128,6 +131,8 @@ App = {
       $("#startVoting").hide()
       $("#stopVoting").show()
     }
+
+    $('#OutputResultPannel').hide()
 
   },
 
@@ -170,7 +175,13 @@ App = {
   },
 
   getElectionResult : async () =>{
-    await App.election.Result()
+    var result = await App.election.Result()
+    $('#OutputResultPannel').show()
+    $("#output").append('election won by ')
+    $("#output").append(result['0'])
+    $("#output").append('  by  ')
+    $("#output").append(result['1'].toNumber())
+    $("#output").append(' votes')
   },
 
   updateCandidateList : async () =>{
